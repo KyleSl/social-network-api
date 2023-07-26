@@ -1,0 +1,23 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyleSl/social-network-api.git"
+  },
+  "author": "Kyle Slaughter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KyleSl/social-network-api/issues"
+  },
+  "homepage": "https://github.com/KyleSl/social-network-api#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1"
+  }
+}
