@@ -2,11 +2,10 @@ const db = require('../config/connection');
 const { User, Thought } = require('../models');
 
 db.once('open', async () => {
-    console.log('connected to db');
-    await seedUsers();
+    console.log('connected to ' + db.name);
+    const smeltedbutter = await seedUsers();
 
-    // const smeltedbutter = await User.find({ username: 'smeltedbutter' });
-    // seedThoughts(smeltedbutter._id);
+    await seedThoughts(smeltedbutter);
 
     process.exit(0);
 });
@@ -21,15 +20,17 @@ async function seedUsers () {
     }];
     await User.create(userSeeds);
     console.log('seeded users');
+    return User.findOne({ username: 'smeltedbutter' });
 }
 
-function seedThoughts (smeltedbutterID) {
+async function seedThoughts (smeltedbutter) {
     const thoughtSeeds = [{
         thoughtText: 'this is cool',
-        user: smeltedbutterID
+        user: smeltedbutter._id
     }, {
         thoughtText: 'I love mongoose',
-        user: smeltedbutterID
+        user: smeltedbutter._id
     }];
-    Thought.create(thoughtSeeds);
+    await Thought.create(thoughtSeeds);
+    console.log('seeded thoughts with user ' + smeltedbutter._id);
 }

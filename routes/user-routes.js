@@ -34,6 +34,26 @@ router.post('/', async (req, res) => {
     }
 });
 
+router.put('/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            {
+                username: req.body.username,
+                email: req.body.email
+            }
+        );
+
+        if (!user) {
+            return res.status(404).json({ message: "No user with that ID" });
+        }
+
+        res.sendStatus(200);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
 // delete one user by ID
 router.delete('/:id', async (req, res) => {
     try {
