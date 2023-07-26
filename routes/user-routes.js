@@ -34,6 +34,21 @@ router.post('/', async (req, res) => {
     }
 });
 
+// delete one user by ID
+router.delete('/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        
+        if (!user) {
+            return res.status(404).json({ message: "No user with that ID" });
+        }
+
+        res.status(200).json(user);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 // add a friend by ID to a user by ID
 router.put('/addfriend', async (req, res) => {
     try {
