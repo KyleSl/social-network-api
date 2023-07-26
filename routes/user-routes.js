@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Thought } = require('../models');
 
 // /api/user
 
@@ -43,9 +43,11 @@ router.delete('/:id', async (req, res) => {
             return res.status(404).json({ message: "No user with that ID" });
         }
 
+        await Thought.deleteMany({ user: user._id });
+
         res.status(200).json(user);
     } catch (err) {
-        res.status(500).json(err);
+        res.status(500).send(err);
     }
 });
 
