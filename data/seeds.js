@@ -32,5 +32,14 @@ async function seedThoughts (smeltedbutter) {
         user: smeltedbutter._id
     }];
     await Thought.create(thoughtSeeds);
+    const thoughts = await Thought.find({});
+    await User.findByIdAndUpdate(
+        smeltedbutter._id,
+        {
+            $push: { thoughts: {
+                $each: thoughts
+            }}
+        }
+    );
     console.log('seeded thoughts with user ' + smeltedbutter._id);
 }
