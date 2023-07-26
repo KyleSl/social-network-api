@@ -11,6 +11,7 @@ app.use('/api', require('./routes'));
 
 db.once('open', () => {
     console.log('Connected to ' + db.name);
+    
     app.listen(PORT, () => {
         console.log('App listening at http://localhost:' + PORT);
     });

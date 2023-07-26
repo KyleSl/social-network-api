@@ -9,7 +9,7 @@ const thoughtSchema = new mongoose.Schema({
         minLength: 1,
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'user',
     },
     createdAt: {
@@ -23,6 +23,6 @@ thoughtSchema.methods.getDateCreated = function () {
     return this.createdAt.toString();
 }
 
-const Thought = model('thought', thoughtSchema);
+const Thought = mongoose.model('thought', thoughtSchema);
 
 module.exports = Thought;

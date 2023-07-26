@@ -6,15 +6,15 @@ const userSchema = new mongoose.Schema({
         required: true 
     },
     email: { 
-        type: email, 
+        type: String, 
         required: true 
     },
     thoughts: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.SchemaTypes.ObjectId, 
         ref: 'thought'
     }],
     friends: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
+        type: mongoose.SchemaTypes.ObjectId, 
         ref: 'user'
     }],
 });
@@ -23,6 +23,6 @@ userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
 });
 
-const User = model('user', userSchema);
+const User = mongoose.model('user', userSchema);
 
 module.exports = User;

@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const reactionSchema = new mongoose.Schema({
     reactionID: {
-        type: mongoose.Schema.Types.ObjectId,
-        default: new ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
+        default: new mongoose.Types.ObjectId,
     },
     reactionBody: {
         type: String,
@@ -11,7 +11,7 @@ const reactionSchema = new mongoose.Schema({
         maxLenght: 280,
     },
     user: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.SchemaTypes.ObjectId,
         ref: 'user',
     },
     createdAt: {
