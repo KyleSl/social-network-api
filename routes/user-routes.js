@@ -55,7 +55,7 @@ router.put('/:id', async (req, res) => {
 })
 
 // delete one user by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/id/:id', async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         
@@ -72,11 +72,11 @@ router.delete('/:id', async (req, res) => {
 });
 
 // add a friend by ID to a user by ID
-router.put('/addfriend', async (req, res) => {
+router.post('/addfriend', async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(
             req.body.userID, 
-            { $addToSet: { friends: req.body.friendID } }
+            { $addToSet: { friends: req.body.friendID }}
         );
 
         if (!user) {
@@ -90,7 +90,7 @@ router.put('/addfriend', async (req, res) => {
 });
 
 // remove a friend by ID from a user by ID
-router.put('/removefriend', async (req, res) => {
+router.delete('/removefriend', async (req, res) => {
     try {
         const user = await User.findByIdAndUpdate(
             req.body.userID, 
